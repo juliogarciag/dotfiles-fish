@@ -1,5 +1,12 @@
+function get_home
+  echo ~
+end
+
+function .. -d ".."
+  cd ..
+end
+
 alias l="ls -lah"
-alias ..="cd .."
 alias cdp="cd ~/dev/projects"
 alias cdd="cd ~/Downloads"
 
@@ -77,10 +84,7 @@ alias bu="bundle update"
 alias rage="bundle exec rake"
 alias gemi="gem install --no-rdoc --no-ri"
 alias ru="rackup config.ru"
-
-# Postgres
-alias pg="/Library/PostgreSQL/9.1/scripts/runpsql.sh; exit"
-alias pg_ctl="/Library/PostgreSQL/9.1/bin/pg_ctl"
+alias pryrails="pry -r ./config/environment"
 
 # Trash
 function trash -d "send a file to the trash"
@@ -106,22 +110,29 @@ function gah -d "git: add, commit with a message and push to heroku master"
   git push heroku master
 end
 
-# C
-function gcrun
-	gcc $argv[1]
-	./a.out
-end
-
-# Redis
 alias redisgo="redis-server /usr/local/etc/redis.conf"
 
-# CouchDB
-alias couch="~/dev/clones/build-couchdb/build/bin/couchdb"
+function download -d "download a file in the current dir from the url $1"
+  curl -o (url_final_part $argv[1]) $argv[1]
+end
 
-# Get JS Libraries
-alias jquery="curl -o jquery.js http://code.jquery.com/jquery.min.js"
-alias underscore="curl -o underscore.js http://underscorejs.org/underscore.js"
-alias backbone="curl -o backbone.js http://documentcloud.github.com/backbone/backbone.js"
+function url_final_part -d "get the final part of a string separated by /"
+  set str_parts (echo $argv[1] | sed 's/\//\ /g')
+  eval "set parts $str_parts"
+  echo $parts[-1..-1]
+end
+
+function jquery -d "jquery"
+  download http://code.jquery.com/jquery.min.js
+end
+
+function underscore -d "underscore.js"
+  download http://underscorejs.org/underscore.js
+end
+
+function backbone -d "backbone.js"
+  download http://documentcloud.github.com/backbone/backbone.js
+end
 
 # Finder
 function finder -d "open in Finder"
@@ -132,9 +143,6 @@ end
 function photoshop -d "open in photoshop"
   open -a 'Adobe Photoshop CS6' $argv[1]
 end
-
-# Pry in Rails
-alias pryrails="pry -r ./config/environment"
 
 # Simulate Slow Connection
 function makeslow
@@ -159,12 +167,11 @@ function chrome -d "open in Chrome"
 end
 
 function ra -d "rack: create and run a default rack server over a static folder"
-  curl -o config.ru https://gist.github.com/raw/4282518/cfd102d2a09df9e6cbeb472efaa6af97496eaf14/config.ru
+  download https://gist.github.com/raw/4282518/cfd102d2a09df9e6cbeb472efaa6af97496eaf14/config.ru
   rackup config.ru
 end
 
-alias getpuzzlenode="/Users/juliogarcia/dev/projects/ruby/getpuzzlenode/getpuzzlenode.rb"
-
+alias getpuzzlenode="~/dev/projects/ruby/getpuzzlenode/getpuzzlenode.rb"
 alias rdb="bundle exec rake db:migrate"
 alias rdba="bundle exec rake db:migrate; RAILS_ENV=test bundle exec rake db:migrate"
 
