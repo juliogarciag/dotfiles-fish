@@ -5,6 +5,7 @@ set PATH $HOME/.rbenv/shims $PATH
 rbenv rehash >/dev/null ^&1
 
 set PATH "/usr/local/mysql/bin" $PATH
+set PATH "/opt/nginx/sbin" $PATH
 set PATH "/opt/local/bin" $PATH
 set PATH "/opt/local/sbin" $PATH
 
