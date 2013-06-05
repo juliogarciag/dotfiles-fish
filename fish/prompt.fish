@@ -1,4 +1,5 @@
 . ~/dev/dotfiles/fish/ext/z.fish
+. ~/dev/dotfiles/fish/ext/git_prompt.fish
 
 # Prompt
 set normal (set_color normal)
@@ -22,7 +23,7 @@ function fish_prompt
   z --add "$PWD"
   
   # pwd
-  set_color $fish_color_cwd
+  set_color $fish_color_cwd --bold
   printf '%s' (prompt_pwd)
   
   # mercurial
@@ -31,7 +32,7 @@ function fish_prompt
   
   # git
   printf ' '
-  __terlar_git_prompt
+  __git_prompt
   set_color white -o
   
   # a colon :)

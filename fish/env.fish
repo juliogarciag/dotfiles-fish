@@ -14,3 +14,4 @@ set PATH "/Users/juliogarcia/bin" $PATH
 set PATH "/Applications/Postgres.app/Contents/MacOS/bin" $PATH
 
 set fish_greeting ""
+set fish_color_cwd "bbbbbb"
