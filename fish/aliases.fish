@@ -112,26 +112,34 @@ end
 
 alias redisgo="redis-server /usr/local/etc/redis.conf"
 
-function download -d "download a file in the current dir from the url $1"
-  curl -o (url_final_part $argv[1]) $argv[1]
-end
-
 function url_final_part -d "get the final part of a string separated by /"
   set str_parts (echo $argv[1] | sed 's/\//\ /g')
   eval "set parts $str_parts"
   echo $parts[-1..-1]
 end
 
-function jquery -d "jquery"
+function download -d "download a file in the current dir from the url $1"
+  curl -o (url_final_part $argv[1]) $argv[1]
+end
+
+function get_jquery -d "jquery"
   download http://code.jquery.com/jquery.min.js
 end
 
-function underscore -d "underscore.js"
+function get_underscore -d "underscore.js"
   download http://underscorejs.org/underscore.js
 end
 
-function backbone -d "backbone.js"
+function get_backbone -d "backbone.js"
   download http://documentcloud.github.com/backbone/backbone.js
+end
+
+function get_es5 -d "es5shims.js"
+  download https://raw.github.com/kriskowal/es5-shim/master/es5-shim.min.js
+end
+
+function get_normalize -d "normalize.css"
+  download http://necolas.github.io/normalize.css/2.1.2/normalize.css
 end
 
 # Finder
@@ -173,7 +181,7 @@ end
 
 alias getpuzzlenode="~/dev/projects/ruby/getpuzzlenode/getpuzzlenode.rb"
 alias rdb="bundle exec rake db:migrate"
-alias rdba="bundle exec rake db:migrate; RAILS_ENV=test bundle exec rake db:migrate"
+alias rdba="bundle exec rake db:migrate; env RAILS_ENV=test bundle exec rake db:migrate"
 
 function mvim -d "open a file with MacVim"
   open -a "MacVim" $argv[1]
@@ -188,3 +196,8 @@ alias bzenv=". env/bin/activate.fish"
 function openhost -d "open localhost in a given port"
   open "http://localhost:$argv[1]"
 end
+
+function lt -d "open LightTable"
+  open -a "/Applications/LightTable.app/" $argv[1]
+end
+  
