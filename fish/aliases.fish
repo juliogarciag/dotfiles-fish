@@ -110,8 +110,6 @@ function gah -d "git: add, commit with a message and push to heroku master"
   git push heroku master
 end
 
-alias redisgo="redis-server /usr/local/etc/redis.conf"
-
 function url_final_part -d "get the final part of a string separated by /"
   set str_parts (echo $argv[1] | sed 's/\//\ /g')
   eval "set parts $str_parts"
@@ -131,7 +129,7 @@ function get_underscore -d "underscore.js"
 end
 
 function get_backbone -d "backbone.js"
-  download http://documentcloud.github.com/backbone/backbone.js
+  download http://documentcloud.github.io/backbone/backbone.js
 end
 
 function get_es5 -d "es5shims.js"
@@ -193,11 +191,70 @@ alias py="python"
 alias bzmanage="python project/manage.py"
 alias bzenv=". env/bin/activate.fish"
 
-function openhost -d "open localhost in a given port"
+function localhost -d "open localhost in a given port"
   open "http://localhost:$argv[1]"
 end
 
 function lt -d "open LightTable"
   open -a "/Applications/LightTable.app/" $argv[1]
 end
+
+function openrepo -d "open a repository location in github using the name of the remote"
+  set repo (getrepo $argv[1])
+  if [ $repo ]
+    open $repo
+  end
+end
+
+function getrepo -d "get url of this current repository in github based in the remote name"
+  if [ (count $argv) -lt 1 ]
+    set expected_remote_name origin
+  else
+    set expected_remote_name $argv[1]
+  end
   
+  set remotes (git remote -v)
+  
+  for remote in $remotes
+    set remote_data_string (echo $remote | sed 's/\s+/ /g' | sed 's/(/ /g' | sed 's/)/ /g')
+    eval "set remote_data $remote_data_string"
+    set remote_name $remote_data[1]
+    
+    if [ $expected_remote_name = $remote_name ]
+      set remote_address $remote_data[2]
+            
+      set http_part (echo $remote_address | grep -E "http:\/\/|https:\/\/")
+      set github_http_part (echo $remote_address | grep -e "@github")
+      
+      if [ $http_part ]
+        echo $remote_address
+      else
+        if [ $github_http_part ]
+          echo (github_web_from_git_address $remote_address)
+        end
+      end
+      
+      break
+    end
+  end
+  
+end
+
+function github_web_from_git_address -d "transforms a github git address to a https url"
+  set address_parts_string (echo $argv[1] | sed 's/:/ /g')
+  eval "set address_parts $address_parts_string"
+  set repo_data $address_parts[2]
+  
+  set repo_parts_string (echo $repo_data | sed 's/\// /g')
+  eval "set repo_parts $repo_parts_string"
+  
+  set username $repo_parts[1]
+  set reponame_with_extension $repo_parts[2]
+  
+  set reponame_parts_string (echo $reponame_with_extension | sed 's/\./ /g')
+  eval "set reponame_parts $reponame_parts_string"
+  set reponame $reponame_parts[1]
+  
+  printf "https://github.com/%s/%s" $username $reponame
+end
+
