@@ -1,5 +1,5 @@
-function get_home
-  echo ~
+function editor -d "the editor of choice. Edit on demand with ealias"
+  mate $argv
 end
 
 function .. -d ".."
@@ -9,8 +9,6 @@ end
 alias l="ls -lah"
 alias cdp="cd ~/dev/projects"
 alias cdd="cd ~/Downloads"
-
-alias editor="mate"
 
 alias reload=". ~/dev/dotfiles/fish/aliases.fish"
 alias epath="editor ~/dev/dotfiles/bash/env"
@@ -104,12 +102,6 @@ function gac -d "git: add and commit with a message"
   git commit -m $argv[1]
 end
 
-function gah -d "git: add, commit with a message and push to heroku master"
-  git add -A
-  git commit -m $argv[1]
-  git push heroku master
-end
-
 function url_final_part -d "get the final part of a string separated by /"
   set str_parts (echo $argv[1] | sed 's/\//\ /g')
   eval "set parts $str_parts"
@@ -145,11 +137,6 @@ function finder -d "open in Finder"
   open -a 'Finder' $argv[1]
 end
 
-# Photoshop
-function photoshop -d "open in photoshop"
-  open -a 'Adobe Photoshop CS6' $argv[1]
-end
-
 # Simulate Slow Connection
 function makeslow
   sudo ipfw pipe 1 config bw 2500Kbit/s delay 30ms
@@ -157,13 +144,13 @@ function makeslow
   sudo ipfw add 2 pipe 1 dst-port 80
 end
 
-# Return to Fast Connections
+# Restore Normal Connection Speed
 function makefast
   sudo ipfw delete 1
   sudo ipfw delete 2
 end
 
-# Navegadores
+# Browsers
 function safari -d "open in Safari"
   open -a "Safari" $argv[1]
 end
@@ -172,24 +159,12 @@ function chrome -d "open in Chrome"
   open -a "Google Chrome" $argv[1]
 end
 
-function ra -d "rack: create and run a default rack server over a static folder"
-  download https://gist.github.com/raw/4282518/cfd102d2a09df9e6cbeb472efaa6af97496eaf14/config.ru
-  rackup config.ru
-end
-
-alias getpuzzlenode="~/dev/projects/ruby/getpuzzlenode/getpuzzlenode.rb"
 alias rdb="bundle exec rake db:migrate"
 alias rdba="bundle exec rake db:migrate; env RAILS_ENV=test bundle exec rake db:migrate"
 
-function mvim -d "open a file with MacVim"
-  open -a "MacVim" $argv[1]
-end
-
-alias emacs="/usr/local/Cellar/emacs/24.1/Emacs.app/Contents/MacOS/Emacs -nw"
-
+# ok, this is super lazy
 alias py="python"
-alias bzmanage="python project/manage.py"
-alias bzenv=". env/bin/activate.fish"
+alias rb="ruby"
 
 function localhost -d "open localhost in a given port"
   open "http://localhost:$argv[1]"
