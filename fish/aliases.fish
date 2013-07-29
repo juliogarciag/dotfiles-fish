@@ -10,14 +10,13 @@ alias l="ls -lah"
 alias cdp="cd ~/dev/projects"
 alias cdd="cd ~/Downloads"
 
-alias reload=". ~/dev/dotfiles/fish/aliases.fish"
-alias epath="editor ~/dev/dotfiles/bash/env"
-alias ealias="editor ~/dev/dotfiles/fish/aliases.fish"
-
-function touche
-  touch $argv[1]
-  editor $argv[1]
+function reload -d "reload aliases and env"
+  . ~/dev/dotfiles/fish/aliases.fish
+  . ~/dev/dotfiles/fish/env.fish
 end
+
+alias epath="editor ~/dev/dotfiles/fish/env.fish"
+alias ealias="editor ~/dev/dotfiles/fish/aliases.fish"
 
 function patremove -d "Remove all files with a given pattern"
   find . -name $argv[1] -type f -delete
