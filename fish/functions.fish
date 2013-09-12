@@ -1,4 +1,4 @@
-function editor -d "the editor of choice. Edit on demand with ealias"
+function e -d "the editor of choice. Edit on demand with ealias"
   subl $argv
 end
 
@@ -135,6 +135,12 @@ end
 
 function reflog -d "git reflog"
   git reflog
+end
+
+function configme -d "config me in a git repository"
+  # change your settings for you
+  git config user.email "julioggonz@gmail.com"
+  git config user.name "Julio García"
 end
 
 function url_final_part -d "get the final part of a string separated by /"
