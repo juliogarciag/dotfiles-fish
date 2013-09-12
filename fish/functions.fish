@@ -52,7 +52,7 @@ function ddos
   else
     set times 1000
   end
-  
+
 	for i in (seq $times)
 		curl "$argv[1]"
 	end
@@ -114,6 +114,7 @@ function trash -d "send a file to the trash"
   mv $argv[1] ~/.Trash
 end
 
+# Git
 function gac -d "git: add and commit with a message"
   git add -A
   git commit -m $argv[1]
@@ -126,6 +127,14 @@ end
 
 function pusho -d "git push"
   git push
+end
+
+function glog -d "git log"
+  git log
+end
+
+function reflog -d "git reflog"
+  git reflog
 end
 
 function url_final_part -d "get the final part of a string separated by /"
@@ -215,20 +224,20 @@ function getrepo -d "get url of this current repository in github based in the r
   else
     set expected_remote_name $argv[1]
   end
-  
+
   set remotes (git remote -v)
-  
+
   for remote in $remotes
     set remote_data_string (echo $remote | sed 's/\s+/ /g' | sed 's/(/ /g' | sed 's/)/ /g')
     eval "set remote_data $remote_data_string"
     set remote_name $remote_data[1]
-    
+
     if [ $expected_remote_name = $remote_name ]
       set remote_address $remote_data[2]
-            
+
       set http_part (echo $remote_address | grep -E "http:\/\/|https:\/\/")
       set github_http_part (echo $remote_address | grep -e "@github")
-      
+
       if [ $http_part ]
         echo $remote_address
       else
@@ -236,28 +245,28 @@ function getrepo -d "get url of this current repository in github based in the r
           echo (github_web_from_git_address $remote_address)
         end
       end
-      
+
       break
     end
   end
-  
+
 end
 
 function github_web_from_git_address -d "transforms a github git address to a https url"
   set address_parts_string (echo $argv[1] | sed 's/:/ /g')
   eval "set address_parts $address_parts_string"
   set repo_data $address_parts[2]
-  
+
   set repo_parts_string (echo $repo_data | sed 's/\// /g')
   eval "set repo_parts $repo_parts_string"
-  
+
   set username $repo_parts[1]
   set reponame_with_extension $repo_parts[2]
-  
+
   set reponame_parts_string (echo $reponame_with_extension | sed 's/\./ /g')
   eval "set reponame_parts $reponame_parts_string"
   set reponame $reponame_parts[1]
-  
+
   printf "https://github.com/%s/%s" $username $reponame
 end
 
