@@ -114,12 +114,6 @@ function trash -d "send a file to the trash"
   mv $argv[1] ~/.Trash
 end
 
-function gao -d "git: add, commit with a message and push to the default origin master"
-  git add -A
-  git commit -m $argv[1]
-  git push
-end
-
 function gac -d "git: add and commit with a message"
   git add -A
   git commit -m $argv[1]
@@ -128,6 +122,10 @@ end
 function gacp -d "git: add, commit and push with a message"
   gac $argv[1]
   git push origin master:master
+end
+
+function pusho -d "git push"
+  git push
 end
 
 function url_final_part -d "get the final part of a string separated by /"
