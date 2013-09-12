@@ -13,8 +13,13 @@ set PATH "/opt/nginx/sbin" $PATH
 set PATH "/opt/local/bin" $PATH
 set PATH "/opt/local/sbin" $PATH
 
+# MySQL
+set MYSQL "/usr/local/mysql/bin"
+set PATH $MYSQL $PATH
+set DYLD_LIBRARY_PATH "/usr/local/mysql/lib" $DYLD_LIBRARY_PATH
+
 # Custom Bins
-set PATH "/Users/juliogarcia/bin" $PATH
+set PATH "$HOME/bin" $PATH
 
 # Cocoa Bins
 set PATH "/System/Library/Frameworks" $PATH
@@ -26,7 +31,7 @@ set PATH "/Applications/Postgres.app/Contents/MacOS/bin" $PATH
 set PATH "/Applications/Sublime Text.app/Contents/SharedSupport/bin" $PATH
 
 # Play Bins
-set PATH "/Users/juliogarcia/bin/play-2.1.2" $PATH
+set PATH "$HOME/bin/play-2.1.3" $PATH
 
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"

@@ -1,29 +1,44 @@
 function editor -d "the editor of choice. Edit on demand with ealias"
-  mate $argv
+  subl $argv
 end
 
 function .. -d ".."
   cd ..
 end
 
-alias l="ls -lah"
-alias cdp="cd ~/dev/projects"
-alias cdd="cd ~/Downloads"
+function l -d "ls -lah, show all the files in a folder, with additional information"
+  ls -lah
+end
 
-function reload -d "reload aliases and env"
-  . ~/dev/dotfiles/fish/aliases.fish
+function cdp
+  # edit for where you want to save your projects
+  cd ~/dev/projects
+end
+
+function cdd
+  # edit for your OS
+  cd ~/Downloads
+end
+
+function reload -d "reload functions and env"
+  . ~/dev/dotfiles/fish/functions.fish
   . ~/dev/dotfiles/fish/env.fish
 end
 
-alias epath="editor ~/dev/dotfiles/fish/env.fish"
-alias ealias="editor ~/dev/dotfiles/fish/aliases.fish"
+function epath
+  editor ~/dev/dotfiles/fish/env.fish
+end
+
+function efunctions
+  editor ~/dev/dotfiles/fish/functions.fish
+end
 
 function patremove -d "Remove all files with a given pattern"
   find . -name $argv[1] -type f -delete
 end
 
 function extremove -d "Remove all files with a given extension"
-  find . -name "*.$argv[1]" -type f -delete
+  patremove "*.$args[1]"
 end
 
 function take
@@ -75,20 +90,29 @@ function extract
 end
 
 # Ruby
-alias b="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-alias rage="bundle exec rake"
-alias gemi="gem install --no-rdoc --no-ri"
-alias ru="rackup config.ru"
-alias pryrails="pry -r ./config/environment"
+function b -d "bundle exec"
+  bundle exec $argv
+end
 
-# Trash
+function bi -d "bundle install"
+  bundle install
+end
+
+function bu -d "bundle update"
+  bundle update
+end
+
+function pryrails -d "run pry within rails env"
+  pry -r ./config/environment
+end
+
+function gemi -d "gem install without docs"
+  gem install --no-rdoc --no-ri
+end
+
 function trash -d "send a file to the trash"
   mv $argv[1] ~/.Trash
 end
-
-# Git
 
 function gao -d "git: add, commit with a message and push to the default origin master"
   git add -A
@@ -99,6 +123,11 @@ end
 function gac -d "git: add and commit with a message"
   git add -A
   git commit -m $argv[1]
+end
+
+function gacp -d "git: add, commit and push with a message"
+  gac $argv[1]
+  git push origin master:master
 end
 
 function url_final_part -d "get the final part of a string separated by /"
@@ -158,12 +187,14 @@ function chrome -d "open in Chrome"
   open -a "Google Chrome" $argv[1]
 end
 
-alias rdb="bundle exec rake db:migrate"
-alias rdba="bundle exec rake db:migrate; env RAILS_ENV=test bundle exec rake db:migrate"
+# Lazyness
+function py
+  python $argv
+end
 
-# ok, this is super lazy
-alias py="python"
-alias rb="ruby"
+function ruby
+  ruby $argv
+end
 
 function localhost -d "open localhost in a given port"
   open "http://localhost:$argv[1]"
