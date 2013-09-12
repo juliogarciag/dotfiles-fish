@@ -205,7 +205,7 @@ function py
   python $argv
 end
 
-function ruby
+function rb
   ruby $argv
 end
 
