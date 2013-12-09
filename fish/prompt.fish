@@ -9,7 +9,7 @@ set green (set_color green)
 set gray (set_color -o black)
 
 function prompt_pwd --description 'Print the current working directory, shortend to fit the prompt'
-    echo $PWD | sed -e "s|^$HOME|~|"
+  echo $PWD | sed -e "s|^$HOME|~|"
 end
 
 function fish_prompt
@@ -17,13 +17,13 @@ function fish_prompt
   z --add "$PWD"
   
   # pwd
-  set_color $fish_color_cwd --bold
+  set_color bbb --bold
   printf '%s' (prompt_pwd)
   
   # git
   printf ' '
   __git_prompt
-  set_color white -o
+  set_color black -o
   
   # a colon :)
   printf ' : '

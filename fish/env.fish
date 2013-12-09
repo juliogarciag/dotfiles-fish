@@ -33,6 +33,14 @@ set PATH "/Applications/Sublime Text.app/Contents/SharedSupport/bin" $PATH
 # Play Bins
 set PATH "$HOME/bin/play-2.1.3" $PATH
 
+# fpcalc
+set PATH "$HOME/bin" $PATH
+
+# AWS
+# set AWS_DEFAULT_REGION = 
+# keyID:    AKIAIQDHMVGUHC4OGF6Q
+# Secret:   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
+
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"
 

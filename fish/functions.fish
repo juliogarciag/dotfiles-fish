@@ -2,8 +2,32 @@ function e -d "the editor of choice. Edit on demand with ealias"
   subl $argv
 end
 
+function deploy
+  gacp $argv[1]
+  cap development deploy
+  cap production deploy
+end
+
+function ez -d "find a folder with z and open the first result in an editor"
+  set oldpwd (pwd)
+  z $argv
+  e .
+  cd $oldpwd
+end
+
 function .. -d ".."
   cd ..
+end
+
+function md -d "edit a markdown file in an aplication"
+  open -a "Marked" $argv[1]
+end
+
+function readme -d "edit a README.md. If it doesn't exists, creates it"
+  if not [ -f README.md ]
+    touch README.md
+  end
+  md README.md
 end
 
 function l -d "ls -lah, show all the files in a folder, with additional information"
@@ -20,17 +44,17 @@ function cdd
   cd ~/Downloads
 end
 
-function reload -d "reload functions and env"
+function reload-fish -d "reload functions and env"
   . ~/dev/dotfiles/fish/functions.fish
   . ~/dev/dotfiles/fish/env.fish
 end
 
 function epath
-  editor ~/dev/dotfiles/fish/env.fish
+  e ~/dev/dotfiles/fish/env.fish
 end
 
 function efunctions
-  editor ~/dev/dotfiles/fish/functions.fish
+  e ~/dev/dotfiles/fish/functions.fish
 end
 
 function patremove -d "Remove all files with a given pattern"
@@ -122,11 +146,19 @@ end
 
 function gacp -d "git: add, commit and push with a message"
   gac $argv[1]
-  git push origin master:master
+  git push
 end
 
 function pusho -d "git push"
   git push
+end
+
+functions pullo -d "git pull"
+  git pull
+end
+
+function gs -d "git status"
+  git status
 end
 
 function glog -d "git log"
