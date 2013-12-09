@@ -153,7 +153,7 @@ function pusho -d "git push"
   git push
 end
 
-functions pullo -d "git pull"
+function pullo -d "git pull"
   git pull
 end
 
