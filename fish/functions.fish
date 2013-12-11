@@ -157,6 +157,10 @@ function pullo -d "git pull"
   git pull
 end
 
+function gc -d "git checkout"
+  git checkout $argv[1]
+end
+
 function gs -d "git status"
   git status
 end
