@@ -37,7 +37,10 @@ set PATH "$HOME/bin/play-2.1.3" $PATH
 set PATH "$HOME/bin" $PATH
 
 # Neo4j
-set PATH "$HOME/bin/neo4j-community-2.0.0/bin" $PATH
+set PATH "$HOME/bin/neo4j/bin" $PATH
+
+# Datomic
+# set PATH "$HOME/bin/datomic/bin" $PATH
 
 # AWS
 # set AWS_DEFAULT_REGION = 
