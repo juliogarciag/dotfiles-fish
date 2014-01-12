@@ -1,11 +1,16 @@
+set -x EDITOR subl
+set -x DEV ~/dev
+set -x DOWNLOAD_LOCATION ~/Downloads
+set -x TRASH_LOCATION ~/.Trash
+set -x GIT_EMAIL "julioggonz@gmail.com"
+set -x GIT_NAME "Julio García"
+
 function e -d "the editor of choice. Edit on demand with ealias"
-  subl $argv
+  eval $EDITOR $argv
 end
 
-function deploy
-  gacp $argv[1]
-  cap development deploy
-  cap production deploy
+function dotfiles -d "The dotfiles location"
+  echo $DEV/dotfiles
 end
 
 function ez -d "find a folder with z and open the first result in an editor"
@@ -23,6 +28,14 @@ function md -d "edit a markdown file in an aplication"
   open -a "Marked" $argv[1]
 end
 
+function rm -d "remove a file interactively"
+  /bin/rm -i $argv
+end
+
+function rm! -d "remove a file"
+  /bin/rm $argv
+end
+
 function readme -d "edit a README.md. If it doesn't exists, creates it"
   if not [ -f README.md ]
     touch README.md
@@ -35,26 +48,37 @@ function l -d "ls -lah, show all the files in a folder, with additional informat
 end
 
 function cdp
-  # edit for where you want to save your projects
-  cd ~/dev/projects
+  cd $DEV/projects
 end
 
 function cdd
   # edit for your OS
-  cd ~/Downloads
+  cd $DOWNLOAD_LOCATION
 end
 
-function reload-fish -d "reload functions and env"
-  . ~/dev/dotfiles/fish/functions.fish
-  . ~/dev/dotfiles/fish/env.fish
+function cdotfiles -d "navigate (cd) to dotfiles"
+  cd (dotfiles)
 end
 
-function epath
-  e ~/dev/dotfiles/fish/env.fish
+function reload! -d "reload functions and env"
+  . $DEV/dotfiles/fish/functions.fish
+  . $DEV/dotfiles/fish/env.fish
 end
 
-function efunctions
-  e ~/dev/dotfiles/fish/functions.fish
+function edotfiles -d "Open the dotfiles folder in an editor (e)"
+  e (dotfiles)
+end
+
+function epath -d "Open the path file (env.fish) with an editor (e)"
+  e $DEV/dotfiles/fish/env.fish
+end
+
+function efunctions -d "Open the functions file (functions.fish) with an editor (e)"
+  e $DEV/dotfiles/fish/functions.fish
+end
+
+function eprompt -d "Open the prompt file (prompt.fish) with an editor (e)"
+  e $DEV/dotfiles/fish/prompt.fish
 end
 
 function patremove -d "Remove all files with a given pattern"
@@ -65,7 +89,7 @@ function extremove -d "Remove all files with a given extension"
   patremove "*.$args[1]"
 end
 
-function take
+function mkcd
   mkdir $argv[1]
   cd $argv[1]
 end
@@ -126,16 +150,12 @@ function bu -d "bundle update"
   bundle update
 end
 
-function pryrails -d "run pry within rails env"
-  pry -r ./config/environment
-end
-
 function gemi -d "gem install without docs"
   gem install --no-rdoc --no-ri
 end
 
 function trash -d "send a file to the trash"
-  mv $argv[1] ~/.Trash
+  mv $argv[1] $TRASH_LOCATION
 end
 
 # Git
@@ -149,11 +169,11 @@ function gacp -d "git: add, commit and push with a message"
   git push
 end
 
-function pusho -d "git push"
+function push -d "git push"
   git push
 end
 
-function pullo -d "git pull"
+function pull -d "git pull"
   git pull
 end
 
@@ -174,9 +194,8 @@ function reflog -d "git reflog"
 end
 
 function configme -d "config me in a git repository"
-  # change your settings for you
-  git config user.email "julioggonz@gmail.com"
-  git config user.name "Julio García"
+  git config user.email $GIT_EMAIL
+  git config user.name $GIT_NAME
 end
 
 function url_final_part -d "get the final part of a string separated by /"
@@ -209,9 +228,14 @@ function get_normalize -d "normalize.css"
   download http://necolas.github.io/normalize.css/2.1.2/normalize.css
 end
 
-# Finder
-function finder -d "open in Finder"
+# Finder (OS X specific)
+function finder -d "open in your file browser (Finder)"
   open -a 'Finder' $argv[1]
+end
+
+# Nautilus (Linux with Nautilus specific)
+function nautilus -d "open in your file browser (Nautilus)"
+  nautilus $argv
 end
 
 # Simulate Slow Connection
@@ -227,7 +251,7 @@ function makefast
   sudo ipfw delete 2
 end
 
-# Browsers
+# Browsers (OS X specific)
 function safari -d "open in Safari"
   open -a "Safari" $argv[1]
 end
@@ -311,4 +335,3 @@ function github_web_from_git_address -d "transforms a github git address to a ht
 
   printf "https://github.com/%s/%s" $username $reponame
 end
-
