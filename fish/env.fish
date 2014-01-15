@@ -25,7 +25,7 @@ set PATH "$HOME/bin" $PATH
 set PATH "/System/Library/Frameworks" $PATH
 
 # Postgres Bins
-set PATH "/Applications/Postgres93.app/Contents/MacOS/bin" $PATH
+set PATH "/Applications/Postgres.app/Contents/MacOS/bin" $PATH
 
 # Sublime Text Bins
 set PATH "/Applications/Sublime Text.app/Contents/SharedSupport/bin" $PATH
@@ -41,11 +41,6 @@ set PATH "$HOME/bin/neo4j/bin" $PATH
 
 # Datomic
 # set PATH "$HOME/bin/datomic/bin" $PATH
-
-# AWS
-# set AWS_DEFAULT_REGION = ...
-# keyID:    AKIAIQDHMVGUHC4OGF6Q
-# Secret:   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
 
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"

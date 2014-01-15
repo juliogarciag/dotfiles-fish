@@ -154,6 +154,10 @@ function gemi -d "gem install without docs"
   gem install --no-rdoc --no-ri
 end
 
+function guard -d "bundle exec guard"
+  bundle exec guard
+end
+
 function trash -d "send a file to the trash"
   mv $argv[1] $TRASH_LOCATION
 end
