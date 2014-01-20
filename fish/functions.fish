@@ -44,7 +44,7 @@ function readme -d "edit a README.md. If it doesn't exists, creates it"
 end
 
 function l -d "ls -lah, show all the files in a folder, with additional information"
-  ls -lah
+  ls -lah $argv
 end
 
 function cdp
@@ -79,6 +79,14 @@ end
 
 function eprompt -d "Open the prompt file (prompt.fish) with an editor (e)"
   e $DEV/dotfiles/fish/prompt.fish
+end
+
+function esshconfig -d "Open the ~/.ssh/config file with an editor (e)"
+  e $HOME/.ssh/config
+end
+
+function evimrc -d "edit the vimrc of the Home"
+  e $HOME/.vimrc
 end
 
 function patremove -d "Remove all files with a given pattern"
@@ -135,6 +143,11 @@ function extract
   else
     echo "'$argv[1]' is not a valid file"
   end
+end
+
+# CTags
+function ctags -d "true ctags"
+  /usr/local/bin/ctags $argv
 end
 
 # Ruby
@@ -339,3 +352,13 @@ function github_web_from_git_address -d "transforms a github git address to a ht
 
   printf "https://github.com/%s/%s" $username $reponame
 end
+
+# Create symlink for .vim and .vimrc
+if not [ -f $HOME/.vimrc ]
+  ln -s $DEV/dotfiles/vim/.vimrc $HOME/.vimrc 
+end
+
+if not [ -f $HOME/.vim ]
+  ln -s $DEV/dotfiles/vim $HOME/.vim
+end
+

@@ -25,7 +25,7 @@ set PATH "$HOME/bin" $PATH
 set PATH "/System/Library/Frameworks" $PATH
 
 # Postgres Bins
-set PATH "/Applications/Postgres.app/Contents/MacOS/bin" $PATH
+set PATH "/Applications/Postgres93.app/Contents/MacOS/bin" $PATH
 
 # Sublime Text Bins
 set PATH "/Applications/Sublime Text.app/Contents/SharedSupport/bin" $PATH
@@ -44,3 +44,4 @@ set PATH "$HOME/bin/neo4j/bin" $PATH
 
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"
+
