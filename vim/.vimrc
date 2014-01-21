@@ -51,6 +51,9 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-rails'
 
-"check neobundle installation"
+" check neobundle installation
 NeoBundleCheck
+
+" auto start NerdTree
+autocmd vimenter * NERDTree
 

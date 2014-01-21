@@ -1,4 +1,4 @@
-set -x EDITOR subl
+set -x EDITOR vim
 set -x DEV ~/dev
 set -x DOWNLOAD_LOCATION ~/Downloads
 set -x TRASH_LOCATION ~/.Trash
@@ -358,7 +358,7 @@ if not [ -f $HOME/.vimrc ]
   ln -s $DEV/dotfiles/vim/.vimrc $HOME/.vimrc 
 end
 
-if not [ -f $HOME/.vim ]
+if not [ -d $HOME/.vim ]
   ln -s $DEV/dotfiles/vim $HOME/.vim
 end
 
