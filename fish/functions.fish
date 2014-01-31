@@ -1,4 +1,4 @@
-set -x EDITOR vim
+set -x EDITOR mvim
 set -x DEV ~/dev
 set -x DOWNLOAD_LOCATION ~/Downloads
 set -x TRASH_LOCATION ~/.Trash
@@ -25,15 +25,15 @@ function .. -d ".."
 end
 
 function md -d "edit a markdown file in an aplication"
-  open -a "Marked" $argv[1]
+  open -a "Mou" $argv[1]
 end
 
 function rm -d "remove a file interactively"
-  /bin/rm -i $argv
+  command rm -i $argv
 end
 
 function rm! -d "remove a file"
-  /bin/rm $argv
+  command rm $argv
 end
 
 function readme -d "edit a README.md. If it doesn't exists, creates it"
@@ -109,9 +109,9 @@ function ddos
     set times 1000
   end
 
-	for i in (seq $times)
-		curl "$argv[1]"
-	end
+  for i in (seq $times)
+    curl "$argv[1]"
+  end
 end
 
 function extract

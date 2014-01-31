@@ -1,6 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =4
-let g:netrw_dirhist_1='/Users/juliogarcia/dev/projects/ruby/olimpo'
-let g:netrw_dirhist_2='/Users/juliogarcia/dev/projects/ruby/olimpo/app'
-let g:netrw_dirhist_3='/Users/juliogarcia/dev/projects/ruby/olimpo/app/models'
-let g:netrw_dirhist_4='/Users/juliogarcia/dev/projects/ruby/agos'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/Users/juliogarcia/dev/projects/ruby/agos'
+let g:netrw_dirhist_2='/Users/juliogarcia/dev/projects/ruby/milhouse'
+let g:netrw_dirhist_3='/Users/juliogarcia/dev/projects/ruby/milhouse/app/reports/reporters'
+let g:netrw_dirhist_4='/Users/juliogarcia/dev/projects/ruby/milhouse/app/controllers'
+let g:netrw_dirhist_5='/Users/juliogarcia/dev/projects/ruby/milhouse/app/filterers'
+let g:netrw_dirhist_6='/Users/juliogarcia/dev/dotfiles/vim/bundle/vim-fish/ftdetect'

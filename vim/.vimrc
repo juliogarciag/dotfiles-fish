@@ -9,12 +9,13 @@ set showcmd
 call neobundle#rc(expand('~/.vim/bundle/'))   " active neoblundle
 NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 
+syntax enable
+
 " enable filetype settings
 filetype on
 filetype plugin on
 filetype plugin indent on
 
-syntax enable                                 " enable syntax highlighting
 set backspace+=start,eol,indent               " restart the backspace settings
 
 " tab stuff"
@@ -23,7 +24,6 @@ set shiftwidth=2                              " autoindex spaces
 set softtabstop=2                             " tab stops have length: 2
 
 set number                                    " line numbers
-colorscheme elflord
 
 " search
 set incsearch
@@ -48,12 +48,32 @@ NeoBundle 'https://github.com/Valloric/YouCompleteMe.git' , {
 
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'xolox/vim-colorscheme-switcher'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'dag/vim-fish'
+
+" Split opening order
+set splitbelow
+set splitright
+
+" Fonts and Schemes
+set guifont=MonoOne:h17
+set linespace=5
+colorscheme candyman
+
+" Disable alert sound for MacVim
+set vb
+
+" Keymaps
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 
 " check neobundle installation
 NeoBundleCheck
-
-" auto start NerdTree
-autocmd vimenter * NERDTree
 

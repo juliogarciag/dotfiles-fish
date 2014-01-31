@@ -1,7 +1,12 @@
 YouCompleteMe
 neobundle.vim
-nerdtree
+vim-coffee-script
+vim-colorscheme-switcher
+vim-colorschemes
 vim-commentary
+vim-fish
+vim-misc
 vim-rails
+vim-rspec
 vim-ruby
 vimproc
