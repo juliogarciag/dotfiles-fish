@@ -10,11 +10,11 @@ set -gx fish_color_git_deleted red
 set -gx fish_color_git_untracked yellow
 set -gx fish_color_git_unmerged red
 
-set -gx fish_prompt_git_status_added '✚'
+set -gx fish_prompt_git_status_added '-'
 set -gx fish_prompt_git_status_modified '*'
-set -gx fish_prompt_git_status_renamed '➜'
-set -gx fish_prompt_git_status_copied '⇒'
-set -gx fish_prompt_git_status_deleted '✖'
+set -gx fish_prompt_git_status_renamed 'R'
+set -gx fish_prompt_git_status_copied 'C'
+set -gx fish_prompt_git_status_deleted 'D'
 set -gx fish_prompt_git_status_untracked '?'
 set -gx fish_prompt_git_status_unmerged '!'
 
@@ -32,7 +32,7 @@ function __git_prompt --description 'Write out the git prompt'
 
   if test -z "$index"
     set_color $fish_color_git_clean
-    echo -n $branch'✓'
+    echo -n $branch
     set_color normal
     return
   end
@@ -62,7 +62,7 @@ function __git_prompt --description 'Write out the git prompt'
     set_color $fish_color_git_dirty
   end
 
-  echo -n $branch'⚡'
+  echo -n $branch
 
   for i in $fish_prompt_git_status_order
     if contains $i in $gs
