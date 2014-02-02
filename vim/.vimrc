@@ -55,6 +55,10 @@ NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'xolox/vim-colorscheme-switcher'
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'dag/vim-fish'
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'rodjek/vim-puppet'
 
 " Split opening order
 set splitbelow
@@ -67,6 +71,9 @@ colorscheme candyman
 
 " Disable alert sound for MacVim
 set vb
+
+" Ctrlp Show hidden Files please
+let g:ctrlp_show_hidden = 1
 
 " Keymaps
 nnoremap <C-J> <C-W><C-J>

@@ -2,8 +2,8 @@
 set PATH "/usr/local/bin:/usr/local/sbin" $PATH
 
 # Rbenv bin and shims of the current ruby
-set PATH $HOME/.rbenv/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
+set PATH ~/.rbenv/bin $PATH
+set PATH ~/.rbenv/shims $PATH
 
 # Rehash rbenv to get the latest rubies installed
 rbenv rehash >/dev/null ^&1
