@@ -1,3 +1,5 @@
+. ~/.config/fish/boxen.fish
+
 # Local Bin
 set PATH "/usr/local/bin:/usr/local/sbin" $PATH
 
