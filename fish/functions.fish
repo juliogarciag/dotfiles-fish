@@ -1,9 +1,13 @@
-set -x EDITOR mvim
+set -x EDITOR subl
 set -x DEV ~/dev
 set -x DOWNLOAD_LOCATION ~/Downloads
 set -x TRASH_LOCATION ~/.Trash
 set -x GIT_EMAIL "julioggonz@gmail.com"
 set -x GIT_NAME "Julio García"
+
+function git -d "aliases git to hub"
+  hub $argv
+end
 
 function e -d "the editor of choice. Edit on demand with ealias"
   eval $EDITOR $argv

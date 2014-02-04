@@ -11,11 +11,6 @@ NeoBundleFetch 'Shougo/neobundle.vim'         " Let NeoBundle manage NeoBundle
 
 syntax enable
 
-" enable filetype settings
-filetype on
-filetype plugin on
-filetype plugin indent on
-
 set backspace+=start,eol,indent               " restart the backspace settings
 
 " tab stuff"
@@ -60,7 +55,12 @@ NeoBundle 'rizzatti/dash.vim'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'rodjek/vim-puppet'
 
-" Split opening order
+" enable filetype settings
+filetype off
+filetype on
+filetype plugin on        " Split opening order
+filetype plugin indent on
+
 set splitbelow
 set splitright
 

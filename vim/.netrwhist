@@ -1,4 +1,11 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/Users/juliogarcia/dev/projects/our-boxen'
-let g:netrw_dirhist_2='/opt/boxen/repo'
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/Users/juliogarcia/dev/projects/ruby/ghoster/app/models'
+let g:netrw_dirhist_2='/Users/juliogarcia/dev/projects/ruby/ghoster/app/models/concerns'
+let g:netrw_dirhist_3='/Users/juliogarcia/dev/projects/ruby/ghoster/app/models'
+let g:netrw_dirhist_4='/Users/juliogarcia/dev/projects/ruby/ghoster/app'
+let g:netrw_dirhist_5='/Users/juliogarcia/dev/projects/ruby/ghoster'
+let g:netrw_dirhist_6='/Users/juliogarcia/dev/dotfiles'
+let g:netrw_dirhist_7='/Users/juliogarcia/dev/projects/ruby/gps-tower'
+let g:netrw_dirhist_8='/Users/juliogarcia/dev/dotfiles'
+let g:netrw_dirhist_9='/Users/juliogarcia/dev/dotfiles/fish'
