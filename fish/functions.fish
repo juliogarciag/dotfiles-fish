@@ -29,7 +29,7 @@ function .. -d ".."
 end
 
 function md -d "edit a markdown file in an aplication"
-  open -a "Mou" $argv[1]
+  open -a "Marked" $argv[1]
 end
 
 function rm -d "remove a file interactively"
@@ -53,6 +53,14 @@ end
 
 function cdp
   cd $DEV/projects
+end
+
+function lsp -d "list projects in an optional subfolder of $DEV/projects" 
+  if [ (count $argv) -lt 1 ] 
+    ls $DEV/projects
+  else
+    ls $DEV/projects/$argv[1]
+  end
 end
 
 function cdd
@@ -199,7 +207,7 @@ function pull -d "git pull"
 end
 
 function gc -d "git checkout"
-  git checkout $argv[1]
+  git checkout $argv
 end
 
 function gs -d "git status"

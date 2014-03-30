@@ -41,8 +41,10 @@ set PATH "$HOME/bin" $PATH
 # Neo4j
 set PATH "$HOME/bin/neo4j/bin" $PATH
 
-# Datomic
-# set PATH "$HOME/bin/datomic/bin" $PATH
+# Java
+set -x JAVA_HOME (/usr/libexec/java_home)
+
+set PATH $JAVA_HOME/bin $PATH
 
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"
