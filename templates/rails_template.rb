@@ -11,7 +11,6 @@ gem 'factory_girl_rails'
 
 gem_group :development, :test do
   gem 'rspec-rails'
-  gem 'zeus'
   gem 'guard-rspec', require: false
   gem 'rspec-nc', require: false
   gem 'pry-rails'
