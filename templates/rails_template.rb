@@ -45,6 +45,8 @@ append_to_file '.gitignore', '.tags'
 append_to_file '.gitignore', '.gemtags'
 append_to_file '.gitignore', '.tags_sorted_by_file'
 
+rake "db:create"
+
 git :init
 git add: "."
 git commit: %Q{ -m 'Initial commit' }
