@@ -5,8 +5,6 @@ create_file ".ruby-version", "2.1.0"
 
 gem 'slim-rails'
 gem 'thin'
-gem 'neat'
-gem 'rails_email_preview', '~> 0.2.19'
 gem 'factory_girl_rails'
 
 gem_group :development, :test do
