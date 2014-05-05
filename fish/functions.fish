@@ -168,11 +168,11 @@ function b -d "bundle exec"
 end
 
 function bi -d "bundle install"
-  bundle install
+  bundle install $argv
 end
 
 function bu -d "bundle update"
-  bundle update
+  bundle update $argv
 end
 
 function gemi -d "gem install without docs"
@@ -199,11 +199,11 @@ function gacp -d "git: add, commit and push with a message"
 end
 
 function push -d "git push"
-  git push
+  git push $argv
 end
 
 function pull -d "git pull"
-  git pull
+  git pull $argv
 end
 
 function gc -d "git checkout"
@@ -211,15 +211,23 @@ function gc -d "git checkout"
 end
 
 function gs -d "git status"
-  git status
+  git status $argv
 end
 
 function glog -d "git log"
-  git log
+  git log $argv
 end
 
 function reflog -d "git reflog"
-  git reflog
+  git reflog $argv
+end
+
+function merge -d "git merge"
+  git merge $argv
+end
+
+function commit -d "git commit -m"
+  git commit -m $argv
 end
 
 function configme -d "config me in a git repository"
@@ -304,65 +312,6 @@ end
 
 function lt -d "open LightTable"
   open -a "/Applications/LightTable.app/" $argv[1]
-end
-
-function openrepo -d "open a repository location in github using the name of the remote"
-  set repo (getrepo $argv[1])
-  if [ $repo ]
-    open $repo
-  end
-end
-
-function getrepo -d "get url of this current repository in github based in the remote name"
-  if [ (count $argv) -lt 1 ]
-    set expected_remote_name origin
-  else
-    set expected_remote_name $argv[1]
-  end
-
-  set remotes (git remote -v)
-
-  for remote in $remotes
-    set remote_data_string (echo $remote | sed 's/\s+/ /g' | sed 's/(/ /g' | sed 's/)/ /g')
-    eval "set remote_data $remote_data_string"
-    set remote_name $remote_data[1]
-
-    if [ $expected_remote_name = $remote_name ]
-      set remote_address $remote_data[2]
-
-      set http_part (echo $remote_address | grep -E "http:\/\/|https:\/\/")
-      set github_http_part (echo $remote_address | grep -e "@github")
-
-      if [ $http_part ]
-        echo $remote_address
-      else
-        if [ $github_http_part ]
-          echo (github_web_from_git_address $remote_address)
-        end
-      end
-
-      break
-    end
-  end
-
-end
-
-function github_web_from_git_address -d "transforms a github git address to a https url"
-  set address_parts_string (echo $argv[1] | sed 's/:/ /g')
-  eval "set address_parts $address_parts_string"
-  set repo_data $address_parts[2]
-
-  set repo_parts_string (echo $repo_data | sed 's/\// /g')
-  eval "set repo_parts $repo_parts_string"
-
-  set username $repo_parts[1]
-  set reponame_with_extension $repo_parts[2]
-
-  set reponame_parts_string (echo $reponame_with_extension | sed 's/\./ /g')
-  eval "set reponame_parts $reponame_parts_string"
-  set reponame $reponame_parts[1]
-
-  printf "https://github.com/%s/%s" $username $reponame
 end
 
 # Create symlink for .vim and .vimrc
