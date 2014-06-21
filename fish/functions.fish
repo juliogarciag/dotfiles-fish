@@ -1,7 +1,6 @@
 set -x EDITOR subl
 set -x DEV ~/dev
 set -x DOWNLOAD_LOCATION ~/Downloads
-set -x TRASH_LOCATION ~/.Trash
 set -x GIT_EMAIL "julioggonz@gmail.com"
 set -x GIT_NAME "Julio García"
 
@@ -157,6 +156,11 @@ function extract
   end
 end
 
+# Hightlight
+function ccat -d "colored cat"
+  highlight -O ansi $argv
+end
+
 # CTags
 function ctags -d "true ctags"
   /usr/local/bin/ctags $argv
@@ -181,10 +185,6 @@ end
 
 function guard -d "bundle exec guard"
   bundle exec guard
-end
-
-function trash -d "send a file to the trash"
-  mv $argv[1] $TRASH_LOCATION
 end
 
 # Git
