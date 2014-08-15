@@ -1,11 +1,5 @@
-. ~/.config/fish/boxen.fish
-
 # Local Bin
 set PATH "/usr/local/bin:/usr/local/sbin" $PATH
-
-# Rbenv bin and shims of the current ruby
-set PATH /opt/boxen/bin $PATH
-set PATH /opt/boxen/shims $PATH
 
 # Rehash rbenv to get the latest rubies installed
 rbenv rehash >/dev/null ^&1
@@ -48,4 +42,3 @@ set PATH $JAVA_HOME/bin $PATH
 
 set fish_greeting ""
 set fish_color_cwd "bbbbbb"
-
