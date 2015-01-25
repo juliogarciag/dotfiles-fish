@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+system "find . -name '*.rb' | /usr/local/bin/ctags -f .tags -L -"
+
+if File.exist? './Gemfile'
+  require 'bundler'
+  paths = Bundler.load.specs.map(&:full_gem_path).join(' ')
+  system "/usr/local/bin/ctags -R -f .gemtags #{paths}"
+end

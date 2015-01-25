@@ -1,11 +1,25 @@
-set -x EDITOR subl
-set -x DEV ~/dev
-set -x DOWNLOAD_LOCATION ~/Downloads
+set -x EDITOR vim
+set -x VISUAL_EDITOR subl
+set -x DEV $HOME/dev
+set -x DOWNLOAD_LOCATION $HOME/Downloads
+set -x PROJECT_DIR $DEV/projects
+set -x PRACTICE_DIR $DEV/practice
 set -x GIT_EMAIL "julioggonz@gmail.com"
 set -x GIT_NAME "Julio García"
 
+function bootstrap_dev -d "bootstrap the ~/dev folder"
+  mkdir -p "$PROJECT_DIR"
+  for folder in 'ruby' 'js' 'python'
+    mkdir -p "$PROJECT_DIR/$folder"
+  end
+  mkdir -p "$PRACTICE_DIR"
+  for folder in 'ruby' 'java' 'c'
+    mkdir -p "$PRACTICE_DIR/$folder"
+  end
+end
+
 function e -d "the editor of choice. Edit on demand with ealias"
-  eval $EDITOR $argv
+  eval $VISUAL_EDITOR $argv
 end
 
 function dotfiles -d "The dotfiles location"
@@ -13,10 +27,9 @@ function dotfiles -d "The dotfiles location"
 end
 
 function ez -d "find a folder with z and open the first result in an editor"
-  set oldpwd (pwd)
   z $argv
   e .
-  cd $oldpwd
+  cd -
 end
 
 function .. -d ".."
@@ -24,7 +37,7 @@ function .. -d ".."
 end
 
 function md -d "edit a markdown file in an aplication"
-  open -a "Marked" $argv[1]
+  open -a "Marked 2" $argv[1]
 end
 
 function rm -d "remove a file interactively"
@@ -46,8 +59,27 @@ function l -d "ls -lah, show all the files in a folder, with additional informat
   ls -lah $argv
 end
 
-function cdp
-  cd $DEV/projects
+function join_array -d "join strings(\$argv[2..-1]) with a separator(\$argv[1])"
+  set separator $argv[1]
+  set args $argv[2..-1]
+
+  if [ (count $args) -lt 2 ]
+    echo $args[1]
+  else
+    echo $args[1]$separator(join_array $separator $args[2..-1])
+  end
+end
+
+function cd_in_parts -d "go to a folder or something inside it"
+  cd (join_array "/" $argv)
+end
+
+function cdp -d "go to the projects folder or something inside them"
+  cd_in_parts $PROJECT_DIR $argv
+end
+
+function cdev -d "go to something inside $DEV or to $DEV directly"
+  cd_in_parts $DEV $argv
 end
 
 function lsp -d "list projects in an optional subfolder of $DEV/projects"
@@ -90,10 +122,6 @@ end
 
 function esshconfig -d "Open the ~/.ssh/config file with an editor (e)"
   e $HOME/.ssh/config
-end
-
-function evimrc -d "edit the vimrc of the Home"
-  e $HOME/.vimrc
 end
 
 function patremove -d "Remove all files with a given pattern"
@@ -159,7 +187,11 @@ end
 
 # CTags
 function ctags -d "true ctags"
-  /usr/local/bin/ctags $argv
+  if [ -f /usr/local/bin/ctags ]
+    /usr/local/bin/ctags $argv
+  else
+    echo "To use true ctags, please install with HomeBrew: brew install ctags"
+  end
 end
 
 # Ruby
@@ -183,6 +215,10 @@ function guard -d "bundle exec guard"
   bundle exec guard
 end
 
+function rake -d "bundle exec rake"
+  bundle exec rake $argv
+end
+
 # Git
 function gac -d "git: add and commit with a message"
   git add -A
@@ -200,6 +236,13 @@ end
 
 function pull -d "git pull"
   git pull $argv
+end
+
+function rebase-to -d "git rebase this branch into another"
+  set original (git branch | grep '*' | awk '{print $2}')
+  gc $argv[1]
+  git rebase $original
+  gc $original
 end
 
 function gc -d "git checkout"
@@ -308,13 +351,4 @@ end
 
 function lt -d "open LightTable"
   open -a "/Applications/LightTable.app/" $argv[1]
-end
-
-# Create symlink for .vim and .vimrc
-if not [ -f $HOME/.vimrc ]
-  ln -s $DEV/dotfiles/vim/.vimrc $HOME/.vimrc
-end
-
-if not [ -d $HOME/.vim ]
-  ln -s $DEV/dotfiles/vim $HOME/.vim
 end
