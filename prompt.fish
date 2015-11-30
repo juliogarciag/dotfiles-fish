@@ -8,24 +8,26 @@ set yellow (set_color yellow)
 set green (set_color green)
 set gray (set_color -o black)
 
-function prompt_pwd --description 'Print the current working directory, shortend to fit the prompt'
-  echo $PWD | sed -e "s|^$HOME|~|"
-end
-
 function fish_prompt
   # add to z database
   z --add "$PWD"
-  
+
   # pwd
   set_color bbb --bold
   printf '%s' (prompt_pwd)
-  
+
   # git
-  printf ' '
+  set_color yellow -o
   __git_prompt
-  set_color black -o
-  
-  # a colon :)
-  printf ' : '
+  set_color yellow -o
+
+  switch $USER
+     case root toor; set prompt_symbol '#'
+     case '*';  set prompt_symbol '$'
+   end
+
+  printf ' '
+  printf $prompt_symbol
+  printf ' '
   set_color normal
 end

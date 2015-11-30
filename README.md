@@ -11,5 +11,5 @@ The projects folder contains a file for any programming language or platform. By
 
 - Download this: `git clone git@github.com:juliogarciag/dotfiles-fish.git ~/dev/dotfiles/fish`.
 - Go to `~/.config/fish/config.fish`.
-- Add the next line to that file: `. ~/dev/dotfiles/fish/profile.fish⏎`
+- Add the next line to that file: `source ~/dev/dotfiles/fish/profile.fish⏎`
 - Save it

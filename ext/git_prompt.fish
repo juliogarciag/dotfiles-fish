@@ -10,13 +10,13 @@ set -gx fish_color_git_deleted red
 set -gx fish_color_git_untracked yellow
 set -gx fish_color_git_unmerged red
 
-set -gx fish_prompt_git_status_added '-'
-set -gx fish_prompt_git_status_modified '*'
-set -gx fish_prompt_git_status_renamed 'R'
-set -gx fish_prompt_git_status_copied 'C'
-set -gx fish_prompt_git_status_deleted 'D'
-set -gx fish_prompt_git_status_untracked '?'
-set -gx fish_prompt_git_status_unmerged '!'
+set -gx fish_prompt_git_status_added 'added'
+set -gx fish_prompt_git_status_modified 'modified'
+set -gx fish_prompt_git_status_renamed 'renamed'
+set -gx fish_prompt_git_status_copied 'copied'
+set -gx fish_prompt_git_status_deleted 'deleted'
+set -gx fish_prompt_git_status_untracked 'untracked'
+set -gx fish_prompt_git_status_unmerged 'unmerged'
 
 set -gx fish_prompt_git_status_order added modified renamed copied deleted untracked unmerged
 
@@ -26,7 +26,8 @@ function __git_prompt --description 'Write out the git prompt'
     return
   end
 
-  echo -n 'at '
+  printf ' '
+  echo -n "| "
 
   set -l index (git status --porcelain ^/dev/null|cut -c 1-2|sort -u)
 
@@ -70,7 +71,9 @@ function __git_prompt --description 'Write out the git prompt'
       set -l status_name fish_prompt_git_status_$i
 
       set_color $$color_name
+      echo -n " ["
       echo -n $$status_name
+      echo -n "]"
     end
   end
 
