@@ -14,7 +14,7 @@ set -x DEV $HOME/dev
 set -x DOTFILES $DEV/dotfiles
 set -x DOWNLOAD_LOCATION $HOME/Downloads
 set -x PROJECT_DIR $DEV/projects
-set -x PRACTICE_DIR $DEV/practice
+set -x SECRET_FISH $DEV/dotfiles/fish/secrets.fish
 set -x GIT_EMAIL "julioggonz@gmail.com"
 set -x GIT_NAME "Julio García"
 set -x LC_CTYPE "en_US.UTF-8"

@@ -1,14 +1,3 @@
-function bootstrap-dev -d "bootstrap the ~/dev folder"
-  mkdir -p "$PROJECT_DIR"
-  for folder in 'ruby' 'js' 'python'
-    mkdir -p "$PROJECT_DIR/$folder"
-  end
-  mkdir -p "$PRACTICE_DIR"
-  for folder in 'ruby' 'java' 'c'
-    mkdir -p "$PRACTICE_DIR/$folder"
-  end
-end
-
 function e -d "the editor of choice. Edit on demand with VISUAL_EDITOR env variable"
   eval $VISUAL_EDITOR $argv
 end
@@ -77,7 +66,7 @@ function cdd
   cd $DOWNLOAD_LOCATION
 end
 
-function reload! -d "reload profile"
+function reload -d "reload profile"
   source $DOTFILES/fish/profile.fish
 end
 
