@@ -141,10 +141,6 @@ function extract
   end
 end
 
-function ccat -d "colored cat"
-  highlight -O ansi $argv
-end
-
 function ctags -d "true ctags"
   if [ -f /usr/local/bin/ctags ]
     /usr/local/bin/ctags $argv
@@ -172,16 +168,9 @@ function gacp -d "git: add, commit and push with a message"
   git push -u origin $branch
 end
 
-function rebase-to -d "git rebase this branch into another"
-  set original (git branch | grep '*' | awk '{print $2}')
-  git checkout $argv[1]
-  git rebase $original
-  git checkout $original
-end
-
 function configme -d "config me in a git repository"
-  git config user.email $GIT_EMAIL
-  git config user.name $GIT_NAME
+  git config --global user.email $GIT_EMAIL
+  git config --global user.name $GIT_NAME
 end
 
 function url-final-part -d "get the final part of a string separated by /"
