@@ -31,27 +31,12 @@ function readme -d "edit a README.md. If it doesn't exists, creates it"
   md README.md
 end
 
-function join_array -d "join strings(\$argv[2..-1]) with a separator(\$argv[1])"
-  set separator $argv[1]
-  set args $argv[2..-1]
-
-  if [ (count $args) -lt 2 ]
-    echo $args[1]
-  else
-    echo $args[1]$separator(join_array $separator $args[2..-1])
-  end
-end
-
-function multi_cd -d "go to a folder or something inside it"
-  cd (join_array "/" $argv)
-end
-
 function cdp -d "go to the projects folder or something inside them"
-  multi_cd $PROJECT_DIR $argv
+  cd "$PROJECT_DIR/$argv"
 end
 
 function cdev -d "go to something inside $DEV or to $DEV directly"
-  multi_cd $DEV $argv
+  cd "$DEV/$argv"
 end
 
 function lsp -d "list projects in an optional subfolder of $DEV/projects"
@@ -71,11 +56,11 @@ function reload -d "reload profile"
 end
 
 function edotfiles -d "Open the dotfiles folder in an editor (e)"
-  e $DOTFILES/$argv
+  e "$DOTFILES/$argv"
 end
 
-function epath -d "Open the path file (env.fish) with an editor (e)"
-  e $DOTFILES/fish/env.fish
+function epath -d "Open the path file (path.fish) with an editor (e)"
+  e "$DOTFILES/fish/path.fish"
 end
 
 function efunctions -d "Open the functions file (functions.fish) with an editor (e)"
@@ -96,18 +81,6 @@ end
 
 function extremove -d "Remove all files with a given extension"
   patremove "*.$args[1]"
-end
-
-function ddos
-  if [ (count $argv) -gt 1 ]
-    set times $argv[2]
-  else
-    set times 1000
-  end
-
-  for i in (seq $times)
-    curl "$argv[1]"
-  end
 end
 
 function extract
@@ -174,9 +147,7 @@ function configme -d "config me in a git repository"
 end
 
 function url-final-part -d "get the final part of a string separated by /"
-  set strparts (echo $argv[1] | sed 's/\//\ /g')
-  eval "set parts $strparts"
-  echo $parts[-1..-1]
+  echo (string split "/" $argv[1])[-1]
 end
 
 function download -d "download a file in the current dir from the url $1"
@@ -200,7 +171,7 @@ function localhost -d "open localhost in a given port"
 end
 
 function file-extension -d "get extension of a given file name"
-  echo $argv[1] | sed 's/.*\.//'
+  echo (string split . $argv[1])[-1]
 end
 
 function show-code -d "Show the code in a less-powered highlighted view"
@@ -209,4 +180,8 @@ function show-code -d "Show the code in a less-powered highlighted view"
   set format "xterm256"
 
   cat $filename | highlight --syntax=$syntax --out-format=$format | less -R
+end
+
+function install-fisher-plugins -d "Install Fisher plugins"
+  fisher z tab choices
 end

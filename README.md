@@ -7,6 +7,7 @@ A set of environment variables, functions and aliases for the Fish shell. Nothin
 
 ## Instalation
 
+- Install Fish: `brew install fish` and set it up as the default shell.
 - Clone this: `git clone git@github.com:juliogarciag/dotfiles-fish.git ~/dev/dotfiles/fish`.
 - Go to `~/.config/fish/config.fish`.
 - Add the next line to that file: `source ~/dev/dotfiles/fish/profile.fish`.

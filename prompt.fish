@@ -1,4 +1,3 @@
-. ~/dev/dotfiles/fish/ext/z.fish
 . ~/dev/dotfiles/fish/ext/git_prompt.fish
 
 # Prompt
@@ -9,9 +8,6 @@ set green (set_color green)
 set gray (set_color -o black)
 
 function fish_prompt
-  # add to z database
-  z --add "$PWD"
-
   # pwd
   set_color bbb --bold
   printf '%s' (prompt_pwd)
@@ -22,9 +18,9 @@ function fish_prompt
   set_color yellow -o
 
   switch $USER
-     case root toor; set prompt_symbol '#'
-     case '*';  set prompt_symbol '$'
-   end
+    case root toor; set prompt_symbol '#'
+    case '*';  set prompt_symbol '$'
+  end
 
   printf ' '
   printf $prompt_symbol

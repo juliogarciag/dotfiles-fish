@@ -5,3 +5,4 @@ source ~/dev/dotfiles/fish/abbreviations.fish
 source ~/dev/dotfiles/fish/functions.fish
 source ~/dev/dotfiles/fish/startup.fish
 source ~/dev/dotfiles/fish/prompt.fish
+source ~/dev/dotfiles/fish/fisher.fish
