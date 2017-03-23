@@ -40,11 +40,7 @@ function cdev -d "go to something inside $DEV or to $DEV directly"
 end
 
 function lsp -d "list projects in an optional subfolder of $DEV/projects"
-  if [ (count $argv) -lt 1 ]
-    ls $DEV/projects
-  else
-    ls $DEV/projects/$argv[1]
-  end
+  ls "$DEV/projects/$argv"
 end
 
 function cdd
@@ -156,14 +152,6 @@ end
 
 function finder -d "open in your file browser (Finder)"
   open -a 'Finder' $argv[1]
-end
-
-function safari -d "open in Safari"
-  open -a "Safari" $argv[1]
-end
-
-function chrome -d "open in Chrome"
-  open -a "Google Chrome" $argv[1]
 end
 
 function localhost -d "open localhost in a given port"
