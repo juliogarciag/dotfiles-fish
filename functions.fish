@@ -118,10 +118,6 @@ function ctags -d "true ctags"
   end
 end
 
-function guard -d "bundle exec guard"
-  bundle exec guard
-end
-
 function rake -d "bundle exec rake"
   bundle exec rake $argv
 end
@@ -140,6 +136,7 @@ end
 function configme -d "config me in a git repository"
   git config --global user.email $GIT_EMAIL
   git config --global user.name $GIT_NAME
+  git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 end
 
 function url-final-part -d "get the final part of a string separated by /"
@@ -171,5 +168,5 @@ function show-code -d "Show the code in a less-powered highlighted view"
 end
 
 function install-fisher-plugins -d "Install Fisher plugins"
-  fisher z tab choices
+  fisher z tab choices edc/bass nvm
 end

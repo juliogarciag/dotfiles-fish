@@ -1,5 +1,9 @@
-rbenv rehash >/dev/null ^&1
-status --is-interactive; and . (nodenv init -|psub)
+# This is here just to fix rbenv setenv call
+function setenv
+  set -gx $argv
+end
+
+status --is-interactive; and . (rbenv init -|psub)
 
 if [ -f $SECRET_FISH ]
   source $SECRET_FISH

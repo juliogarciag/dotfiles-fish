@@ -2,7 +2,7 @@ abbr -a   gc          git checkout
 abbr -a   cherry      git cherry-pick
 abbr -a   commit      git commit -m
 abbr -a   fetch       git fetch
-abbr -a   glog        git log
+abbr -a   glog        git lg
 abbr -a   gm          git merge
 abbr -a   pull        git pull
 abbr -a   push        git push
