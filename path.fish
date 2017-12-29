@@ -1,7 +1,12 @@
 set PATH "$DEV/dotfiles/fish/bin" $PATH
 set PATH "/usr/local/bin" $PATH
-set PATH "/usr/local/opt/gnu-tar/libexec/gnubin" $PATH
-set PATH "$HOME/.rbenv/shims" $PATH
+if [ -f "/usr/local/opt/gnu-tar/libexec/gnubin" ]
+  set PATH "/usr/local/opt/gnu-tar/libexec/gnubin" $PATH
+end
 set PATH "/System/Library/Frameworks" $PATH
-set PATH $POSTGRES_PATH $PATH
-set PATH $JAVA_HOME/bin $PATH
+if [ -f $POSTGRES_PATH ]
+  set PATH $POSTGRES_PATH $PATH
+end
+if [ -n "$JAVA_HOME" ]
+  set PATH $JAVA_HOME/bin $PATH
+end

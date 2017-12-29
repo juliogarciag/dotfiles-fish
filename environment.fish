@@ -1,6 +1,6 @@
 set -x DYLD_LIBRARY_PATH "/usr/local/mysql/lib" $DYLD_LIBRARY_PATH
 set -x POSTGRES_PATH "/Applications/Postgres.app/Contents/Versions/latest/bin"
-set -x JAVA_HOME (/usr/libexec/java_home)
+set -x JAVA_HOME (/usr/libexec/java_home 2>/dev/null)
 set -x ANDROID_HOME /usr/local/opt/android-sdk
 set -x EDITOR vim
 set -x VISUAL_EDITOR atom-beta
