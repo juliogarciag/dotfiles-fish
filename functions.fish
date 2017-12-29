@@ -168,5 +168,5 @@ function show-code -d "Show the code in a less-powered highlighted view"
 end
 
 function install-fisher-plugins -d "Install Fisher plugins"
-  fisher z tab choices edc/bass nvm
+  fisher z choices edc/bass nvm
 end
